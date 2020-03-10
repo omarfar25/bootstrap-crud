@@ -186,7 +186,7 @@
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					        <!-- <input type="submit" name="editaction" class="btn btn-success" value="Save"> -->
-					        <a class="btn btn-success" href="?editaction=ok&id=<?php echo $tbrow['id']; ?>">Delete</a>
+					        <a href="?editaction=ok&id=<?php echo $tbrow['id']; ?>"><input type="submit" name="editaction" class="btn btn-success my-2 float-right" value="Save cheange "></a>
 									</form>
 					      </div>
 					    </div>
