@@ -20,6 +20,26 @@
 	}
 ?>
 
+<?php
+	//Edit data
+	if ($conn->connect_error) {
+		die("connection faild: ".$conn->connect_error);
+	}
+	else{
+		if (isset($_GET["editaction"]) && isset($_GET['id'])) {
+			$id = $_GET['id'];
+			$your_name=$_GET["yourname"];
+			$u_name=$_GET["uname"];
+			$sqledit ="UPDATE faruque SET name=".$your_name.",username=".$u_name." WHERE id=$id";
+			if ($conn ->query($sqledit)==true) {
+				$msg ="data Insart sucess!!";
+			} else {
+				$msg ="data Insart Faild ):";
+			}
+		}
+	}
+?>
+
 
 <?php
 //Delete data
@@ -81,7 +101,7 @@
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
 					        	<!-- <input type="submit" url='#' name="makeaction" class="btn btn-success" value=""> -->
-										<input type="submit" name="makeaction" class="btn btn-primary my-2 float-right" value="Add ">
+										<input type="submit" name="makeaction" class="btn btn-success my-2 float-right" value="Add ">
 					   		 </form>
 					      </div>
 					    </div>
@@ -157,16 +177,17 @@
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					        	<form class="form-group" action="" method="get">
-								<label for="">Name </label>
-								<input type="text" name="yourname" class="form-control my-2">
-								<label for="">Username</label>
-								<input type="text" name="uname" class="form-control my-2">
-							</form>
+					        <form class="form-group" action="" method="get">
+										<label for="">Name </label>
+										<input type="text" name="yourname" class="form-control my-2">
+										<label for="">Username</label>
+										<input type="text" name="uname" class="form-control my-2">
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					        <button type="submit" name="" class="btn btn-success">Save</button>
+					        <!-- <input type="submit" name="editaction" class="btn btn-success" value="Save"> -->
+					        <a class="btn btn-success" href="?editaction=ok&id=<?php echo $tbrow['id']; ?>">Delete</a>
+									</form>
 					      </div>
 					    </div>
 					  </div>
