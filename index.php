@@ -1,4 +1,5 @@
 <?php include 'dbconfig.php' ?>
+<?php session_start(); ?>
 <?php $msg=""; ?>
 <?php
 	//Insat data
@@ -131,7 +132,7 @@
 				      <td><?php echo $tbrow['name']; ?></td>
 				      <td><?php echo $tbrow['username']; ?></td>
 				      <td><a class="text-info 2" data-toggle="modal" data-target="#editModal" href=""><i class="far fa-edit"></i></a>
-				      	  <a class="text-danger ml-5" data-toggle="modal" data-target="#deleteModal" href=""><i class="fas fa-trash-alt"></i></a></td>
+				      	  <a class="text-danger ml-5" data-toggle="modal" data-target="#deleteModal" href="<?php  $_SESSION["sesionid"] = $tbrow['id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
 				    </tr>
 
 					<?php
@@ -161,7 +162,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <a class="btn btn-danger" href="?delete=ok&id=<?php echo $tbrow['id']; ?>">Delete</a>
+	        <a class="btn btn-danger" href="?delete=ok&id=<?php echo $_SESSION["sesionid"]; ?>">Delete</a>
 	      </div>
 	    </div>
 	  </div>
@@ -178,16 +179,16 @@
 					      </div>
 					      <div class="modal-body">
 					        <form class="form-group" action="" method="get">
-										<label for="">Name </label>
-										<input type="text" name="yourname" class="form-control my-2">
-										<label for="">Username</label>
-										<input type="text" name="uname" class="form-control my-2">
+								<label for="">Name </label>
+								<input type="text" name="yourname" class="form-control my-2">
+								<label for="">Username</label>
+								<input type="text" name="uname" class="form-control my-2">
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					        <!-- <input type="submit" name="editaction" class="btn btn-success" value="Save"> -->
-					        <a href="?editaction=ok&id=<?php echo $tbrow['id']; ?>"><input type="submit" name="editaction" class="btn btn-success my-2 float-right" value="Save cheange "></a>
-									</form>
+					        <a type="submit" name="editaction" class="btn btn-success my-2 float-right" href="?editaction=ok&id=<?php echo $tbrow['id']; ?>"></a>
+							</form>
 					      </div>
 					    </div>
 					  </div>
