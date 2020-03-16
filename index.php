@@ -29,13 +29,13 @@
 	else{
 		if (isset($_GET["editaction"]) && isset($_GET['id'])) {
 			$id = $_GET['id'];
-			$your_name=$_GET["yourname"];
-			$u_name=$_GET["uname"];
+			$your_name=$_SESSION["seyourname"];
+			$u_name=$_SESSION["seuname"];
 			$sqledit ="UPDATE faruque SET name=".$your_name.",username=".$u_name." WHERE id=$id";
 			if ($conn ->query($sqledit)==true) {
-				$msg ="data Insart sucess!!";
+				$msg ="data Edit sucess!!";
 			} else {
-				$msg ="data Insart Faild ):";
+				$msg ="data Edit Faild ):";
 			}
 		}
 	}
@@ -167,32 +167,36 @@
 	    </div>
 	  </div>
 	</div>
-					<!-- Modal for edit-->
-					<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
-					      </div>
-					      <div class="modal-body">
-					        <form class="form-group" action="" method="get">
-								<label for="">Name </label>
-								<input type="text" name="yourname" class="form-control my-2">
-								<label for="">Username</label>
-								<input type="text" name="uname" class="form-control my-2">
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					        <!-- <input type="submit" name="editaction" class="btn btn-success" value="Save"> -->
-					        <a type="submit" name="editaction" class="btn btn-success my-2 float-right" href="?editaction=ok&id=<?php echo $tbrow['id']; ?>"></a>
-							</form>
-					      </div>
-					    </div>
-					  </div>
-					</div>
+	<!-- Modal for edit-->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					 <div class="modal-header">
+					   <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+					   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					     <span aria-hidden="true">&times;</span>
+					   </button>
+					 </div>
+					 <div class="modal-body">
+					  <form class="form-group" action="" method="get">
+							<label for="">Name </label>
+							<input type="text" name="yourname" class="form-control my-2">
+							<label for="">Username</label>
+							<input type="text" name="uname" class="form-control my-2">
+					 </div>
+					 <div class="modal-footer">
+					   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					   <!-- <input type="submit" name="editaction" class="btn btn-success" value="Save"> -->
+					   <a type="submit" name="editaction" class="btn btn-success my-2 float-right" href="?editaction=ok&id=<?php
+					        echo $_SESSION["sesionid"];
+					        $_SESSION["seyourname"] = "yourname";
+					        $_SESSION["seuname"] = "uname";
+					        ?>">Save Cheange</a>
+						</form>
+					 </div>
+				</div>
+		</div>
+	</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
